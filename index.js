@@ -4,6 +4,10 @@ import BOOKS from './books.js';
 const app = express();
 const port = 3000;
 
+app.listen(port, () => {
+  console.log(`serveris lisening on port ${port}`);
+});
+
 app.get('/books', (req, res) => {
   console.log(req.query);
   // res.json(BOOKS);
@@ -23,8 +27,4 @@ app.get('/books', (req, res) => {
     }
   }
   res.json(response);
-});
-
-app.listen(port, () => {
-  console.log(`serveris lisening on port ${port}`);
 });
