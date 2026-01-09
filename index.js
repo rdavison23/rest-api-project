@@ -9,8 +9,6 @@ app.listen(port, () => {
 });
 
 app.get('/books', (req, res) => {
-  console.log(req.query);
-  // res.json(BOOKS);
   let response = [];
 
   for (const book of BOOKS) {
