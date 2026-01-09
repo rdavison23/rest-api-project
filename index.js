@@ -12,16 +12,20 @@ app.get('/books', (req, res) => {
   let response = [];
 
   for (const book of BOOKS) {
-    // response.push(book);
-    // no query than push(book)
-    // else
-    // if we have a format === book.format push(format)
-    if (Object.keys(req.query).length === 0) {
+    const queryKeys = Object.keys(req.query);
+
+    //if no query params return all books
+    // if (queryKeys.length === 0) {
+    //   response.push(book);
+    //   continue;
+    // }
+    // Checks if every query key matches the book
+    const matchesAll = queryKeys.every((key) => {
+      return book[key] === req.query[key];
+    });
+
+    if (matchesAll) {
       response.push(book);
-    } else {
-      if (req.query['format'] === book['format']) {
-        response.push(book);
-      }
     }
   }
   res.json(response);
